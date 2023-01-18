@@ -2,10 +2,12 @@ import { TodoListType } from "../Types/todoTypes"
 
 interface TodoListProps {
   list: TodoListType[]
+  editCallBack?: (item: TodoListType) => void
+  deleteCallBack?: (item: TodoListType) => void
 }
 
 function TodoList(props: TodoListProps) {
-  const { list } = props
+  const { list, editCallBack, deleteCallBack } = props
   return (
     <div>
       <table className="table-auto border-collapse border border-slate-500">
@@ -24,7 +26,7 @@ function TodoList(props: TodoListProps) {
           {list &&
             list.map((item) => {
               return (
-                <tr>
+                <tr key={item.id}>
                   <td className="border border-slate-600 p-3">{item.id}</td>
                   <td className="border border-slate-600 p-3">
                     {item["first-name"]}
@@ -34,12 +36,18 @@ function TodoList(props: TodoListProps) {
                   </td>
                   <td className="border border-slate-600 p-3">{item.email}</td>
                   <td className="border border-slate-600 p-3">
-                    <button className="px-3 py-1 cursor-pointer text-2xl border rounded-md mx-1">
+                    <button
+                      className="px-3 py-1 cursor-pointer text-2xl border rounded-md mx-1"
+                      onClick={() => editCallBack && editCallBack(item)}
+                    >
                       Edit
                     </button>
                   </td>
                   <td className="border border-slate-600 p-3">
-                    <button className="px-3 py-1 cursor-pointer text-2xl border rounded-md mx-1">
+                    <button
+                      className="px-3 py-1 cursor-pointer text-2xl border rounded-md mx-1"
+                      onClick={() => deleteCallBack && deleteCallBack(item)}
+                    >
                       Delete
                     </button>
                   </td>

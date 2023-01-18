@@ -50,27 +50,15 @@
     },
     {
       "id": 9,
+      "email": "imali.work@gmail.com",
       "first-name": "Muhammad",
-      "last-name": "Ali",
-      "email": "imali.work@gmail.com"
+      "last-name": "Ali"
     },
     {
       "id": 10,
       "first-name": "Haroon",
       "last-name": "Amjad",
       "email": "imharoon.work@gmail.com"
-    },
-    {
-      "first-name": "Full",
-      "last-name": "Test",
-      "email": "test@test.co",
-      "id": 13
-    },
-    {
-      "first-name": "Tipu",
-      "last-name": "Khan",
-      "email": "tipusaeed501@gmail.com",
-      "id": 14
     },
     {
       "first-name": "Rehmat",
@@ -83,6 +71,12 @@
       "last-name": "Daud",
       "email": "imdaud.work@gmail.com",
       "id": 16
+    },
+    {
+      "first-name": "Raja",
+      "last-name": "Gggg",
+      "email": "imraja.work@gmail.com",
+      "id": 17
     }
   ]
 }

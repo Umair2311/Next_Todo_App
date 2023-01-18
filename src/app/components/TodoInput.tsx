@@ -1,9 +1,7 @@
-import { useState } from "react"
-
 interface TodoProps {
   label: string
   placeHolder?: string
-  callBack?: (inputText?: string) => void
+  callBack?: (inputText?: string | undefined) => void
 }
 
 function TodoInput(props: TodoProps) {

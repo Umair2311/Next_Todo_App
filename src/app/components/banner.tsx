@@ -8,8 +8,20 @@ import { OptionType, TodoListType } from "../Types/todoTypes"
 function Banner() {
   const [open, setOpen] = useState(false)
   const [todoList, setTodoList] = useState<TodoListType[]>([])
-  function handleTodoModal() {
+  const [editTodo, setEditTodo] = useState<TodoListType>({
+    "first-name": "",
+    "last-name": "",
+    email: "",
+  })
+  function handleTodoModal(data?: TodoListType) {
     setOpen(!open)
+    data && setEditTodo(data)
+  }
+
+  function handleEditTodo(data: TodoListType) {
+    setOpen(false)
+    TodoApi("PUT", data)
+    getTodoList()
   }
 
   useEffect(() => {
@@ -20,12 +32,15 @@ function Banner() {
     method: "GET" | "PUT" | "POST" | "DELETE",
     data?: TodoListType
   ) {
+    let url = "http://localhost:3001/users"
     let options: OptionType = {
       method: method,
       headers: { "content-type": "application/json" },
-    }
-    method === "POST" && (options["body"] = JSON.stringify(data))
-    const todoData = await fetch("http://localhost:3001/users", options)
+    };
+
+    (method === "POST" || method === "PUT") && (options["body"] = JSON.stringify(data));
+    (method === "DELETE" || method=== "PUT") && (url = `${url}/${data?.id}`)
+    const todoData = await fetch(url, options)
     const todoResponse = await todoData.json()
     return todoResponse
   }
@@ -38,6 +53,11 @@ function Banner() {
   async function getTodoList() {
     const listTodo = await TodoApi("GET")
     listTodo && setTodoList(listTodo)
+  }
+
+  async function handleDeleteTodo(data: TodoListType) {
+    await TodoApi("DELETE", data)
+    getTodoList()
   }
 
   async function handleSearchList(text?: string) {
@@ -71,10 +91,20 @@ function Banner() {
           />
         </div>
         <div className="flex justify-center p-3 m-5">
-          <TodoList list={todoList} />
+          <TodoList
+            list={todoList}
+            editCallBack={handleTodoModal}
+            deleteCallBack={handleDeleteTodo}
+          />
         </div>
       </div>
-      <AddTodoModal open={open} close={handleTodoModal} addTodo={addTodo} />
+      <AddTodoModal
+        open={open}
+        close={handleTodoModal}
+        addTodo={addTodo}
+        editTodo={handleEditTodo}
+        data={editTodo}
+      />
     </div>
   )
 }
