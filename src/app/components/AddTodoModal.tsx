@@ -1,10 +1,47 @@
+import { ChangeEvent, use, useState } from "react"
+import { TodoListType } from "../Types/todoTypes"
+
 interface ModalProps {
   open: Boolean
   close: () => void
+  addTodo?: (data: TodoListType) => void
 }
 
 function AddTodoModal(props: ModalProps) {
-  const { open, close } = props
+  const { open, close, addTodo } = props
+  const [todoData, setTodoData] = useState<TodoListType>({
+    "first-name": "",
+    "last-name": "",
+    email: "",
+  })
+
+  function handleInputChange(
+    e: ChangeEvent<HTMLInputElement>,
+    todoInputs: string
+  ) {
+    let data = JSON.parse(JSON.stringify(todoData))
+    data[todoInputs] = e.target.value
+    setTodoData(data)
+  }
+
+  function submitTodo() {
+    if (
+      todoData.email !== "" &&
+      todoData["first-name"] !== "" &&
+      todoData["last-name"] !== ""
+    ) {
+      addTodo && addTodo(todoData)
+    } else {
+      if (todoData.email === "") {
+        alert("Enter your email")
+      } else if (todoData["first-name"] === "") {
+        alert("Enter your First name")
+      } else {
+        alert("Enter your Last Name")
+      }
+    }
+  }
+
   return (
     open && (
       <div
@@ -52,6 +89,7 @@ function AddTodoModal(props: ModalProps) {
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="name@company.com"
+                    onChange={(e) => handleInputChange(e, "email")}
                     required
                   />
                 </div>
@@ -60,13 +98,31 @@ function AddTodoModal(props: ModalProps) {
                     htmlFor="name"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your Name
+                    First Name
                   </label>
                   <input
-                    type="name"
-                    name="name"
-                    id="name"
-                    placeholder=""
+                    type="fname"
+                    name="fname"
+                    id="fname"
+                    placeholder="First Name"
+                    onChange={(e) => handleInputChange(e, "first-name")}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="lname"
+                    name="lname"
+                    id="lname"
+                    placeholder="Last Name"
+                    onChange={(e) => handleInputChange(e, "last-name")}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
@@ -75,6 +131,7 @@ function AddTodoModal(props: ModalProps) {
                 <button
                   type="submit"
                   className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  onClick={submitTodo}
                 >
                   Adding Todo
                 </button>
