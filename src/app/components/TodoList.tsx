@@ -7,8 +7,9 @@ function TodoList() {
             <th className="border border-slate-600 p-3">Id</th>
             <th className="border border-slate-600 p-3">First Name</th>
             <th className="border border-slate-600 p-3">Email</th>
-            <th className="border border-slate-600 p-3">Button 1</th>
-            <th className="border border-slate-600 p-3">Button 2</th>
+            <th colSpan={2} className="border border-slate-600 p-3 text-center">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
