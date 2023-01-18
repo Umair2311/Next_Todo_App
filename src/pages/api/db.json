@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "first-name": "Umair",
+      "last-name": "Saeed",
+      "email": "imumair.work@gmail.com"
+    },
+    {
+      "id": 2,
+      "first-name": "Muhammad",
+      "last-name": "Ahsan",
+      "email": "imahsan.work@gmail.com"
+    },
+    {
+      "id": 3,
+      "first-name": "Hifz-",
+      "last-name": "ur-Rehman",
+      "email": "imhifz.work@gmail.com"
+    },
+    {
+      "id": 4,
+      "first-name": "Tahseen",
+      "last-name": "Dar",
+      "email": "imtahseen.work@gmail.com"
+    },
+    {
+      "id": 5,
+      "first-name": "Farhan",
+      "last-name": "Khan",
+      "email": "imfarhan.work@gmail.com"
+    },
+    {
+      "id": 6,
+      "first-name": "Waleed",
+      "last-name": "butt",
+      "email": "imwaleed.work@gmail.com"
+    },
+    {
+      "id": 7,
+      "first-name": "Muhammad",
+      "last-name": "Rehman",
+      "email": "imrehman.work@gmail.com"
+    },
+    {
+      "id": 8,
+      "first-name": "Suleman",
+      "last-name": "Khan",
+      "email": "imsuleman.work@gmail.com"
+    },
+    {
+      "id": 9,
+      "first-name": "Muhammad",
+      "last-name": "Ali",
+      "email": "imali.work@gmail.com"
+    },
+    {
+      "id": 10,
+      "first-name": "Haroon",
+      "last-name": "Amjad",
+      "email": "imharoon.work@gmail.com"
+    }
+  ]
+}

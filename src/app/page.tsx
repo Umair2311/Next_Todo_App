@@ -1,5 +1,13 @@
-import styles from "./page.module.css"
+import Navbar from "./components/navbar"
+import Footer from "./components/footer"
+import Banner from "./components/banner"
 
 export default function Home() {
-  return <main className={styles.main}></main>
+  return (
+    <main>
+      <Navbar />
+      <Banner />
+      <Footer />
+    </main>
+  )
 }
